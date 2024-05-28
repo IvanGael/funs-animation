@@ -15,10 +15,13 @@ import 'fab_menu_reveal_options.dart';
 import 'fancy_page_transition.dart';
 import 'flip_book_animation.dart';
 import 'geometric_pattern_animation.dart';
+import 'image_pan_slider_page.dart';
 import 'image_parallax_animation.dart';
 import 'list_with_animation.dart';
 import 'mind_mapping.dart';
 import 'numbers_particle_animation.dart';
+import 'photo_zoom.dart';
+import 'preview_image_gallery.dart';
 import 'pull_to_refresh_animation.dart';
 import 'rating_stars_animation.dart';
 import 'reoderable_event_list.dart';
@@ -36,15 +39,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: FlipBookAnimationScreen(),
-    );
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     useMaterial3: true,
+    //   ),
+    //   debugShowCheckedModeBanner: false,
+    //   home: FlipBookAnimationScreen(),
+    // );
 
     // return ChangeNotifierProvider(
     //   create: (context) => PuzzleProvider(),
@@ -70,16 +73,16 @@ class MyApp extends StatelessWidget {
     //   ),
     // );
 
-    // return ChangeNotifierProvider(
-    //   create: (context) => CartModel(),
-    //   child: MaterialApp(
-    //     title: 'Shopping Cart',
-    //     theme: ThemeData(
-    //       primarySwatch: Colors.blue,
-    //     ),
-    //     debugShowCheckedModeBanner: false,
-    //     home: ShoppingPage(),
-    //   ),
-    // );
+    return ChangeNotifierProvider(
+      create: (context) => CartModel(),
+      child: MaterialApp(
+        title: 'Shopping Cart',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: ShoppingPage(),
+      ),
+    );
   }
 }

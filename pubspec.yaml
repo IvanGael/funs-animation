@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   animated_text_kit: ^4.2.2
   provider: ^6.1.2
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,7 @@ flutter:
     - assets/manga2.jpg
     - assets/manga3.jpg
     - assets/dash.png
+    - assets/nature2.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

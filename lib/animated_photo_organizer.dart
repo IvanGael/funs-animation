@@ -18,8 +18,8 @@ class PhotoOrganizerScreen extends StatelessWidget {
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 4.0,
-          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 2.0,
+          mainAxisSpacing: 2.0,
         ),
         itemCount: photoProvider.photos.length,
         itemBuilder: (context, index) {
@@ -47,9 +47,9 @@ class DraggablePhoto extends StatelessWidget {
       feedback: Material(
         child: Image.asset(
           photo,
-          fit: BoxFit.cover,
-          width: 100,
-          height: 100,
+          // fit: BoxFit.cover,
+          width: 150,
+          height: 80,
         ),
       ),
       childWhenDragging: Container(),
@@ -74,20 +74,14 @@ class DraggablePhoto extends StatelessWidget {
 
 class PhotoProvider with ChangeNotifier {
   final List<String> _photos = [
-    'assets/manga1.jpg',
-    'assets/manga2.jpg',
-    'assets/manga3.jpg',
-    'assets/manga2.jpg',
-    'assets/manga3.jpg',
-    'assets/manga2.jpg',
-    'assets/manga3.jpg',
-    'assets/manga1.jpg',
-    'assets/manga2.jpg',
-    'assets/manga3.jpg',
-    'assets/manga1.jpg',
-    'assets/manga2.jpg',
-    'assets/manga1.jpg',
-    'assets/manga2.jpg',
+    'assets/nature.jpg',
+    'assets/nature2.jpg',
+    'assets/nature3.jpg',
+    'assets/nature4.jpg',
+    'assets/nature5.jpg',
+    'assets/nature6.jpg',
+    'assets/nature7.jpg',
+    'assets/nature8.jpg',
   ];
 
   List<String> get photos => _photos;
