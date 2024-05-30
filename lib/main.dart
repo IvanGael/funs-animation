@@ -10,13 +10,17 @@ import 'background_with_animation.dart';
 import 'chat_with_bubble_animation.dart';
 import 'color_cycle_animation.dart';
 import 'countdown_timer_with_dynamic_changes.dart';
+import 'custom_keyboard.dart';
 import 'dragging_with_animation.dart';
 import 'fab_menu_reveal_options.dart';
 import 'fancy_page_transition.dart';
 import 'flip_book_animation.dart';
+import 'furniture_arranger.dart';
 import 'geometric_pattern_animation.dart';
+import 'historical_timeline.dart';
 import 'image_pan_slider_page.dart';
 import 'image_parallax_animation.dart';
+import 'interactive_menu.dart';
 import 'list_with_animation.dart';
 import 'mind_mapping.dart';
 import 'numbers_particle_animation.dart';
@@ -40,15 +44,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData(
-    //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    //     useMaterial3: true,
-    //   ),
-    //   debugShowCheckedModeBanner: false,
-    //   home: VirtualAquarium(),
-    // );
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: PreviewImageGalleryScreen(title: 'Gallery',),
+    );
 
     // return ChangeNotifierProvider(
     //   create: (context) => PuzzleProvider(),
@@ -74,16 +78,29 @@ class MyApp extends StatelessWidget {
     //   ),
     // );
 
-    return ChangeNotifierProvider(
-      create: (context) => CartModel(),
-      child: MaterialApp(
-        title: 'Shopping Cart',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: ShoppingPage(),
-      ),
-    );
+    // return ChangeNotifierProvider(
+    //   create: (context) => CartModel(),
+    //   child: MaterialApp(
+    //     title: 'Shopping Cart',
+    //     theme: ThemeData(
+    //       primarySwatch: Colors.blue,
+    //     ),
+    //     debugShowCheckedModeBanner: false,
+    //     home: ShoppingPage(),
+    //   ),
+    // );
+
+
+    // return ChangeNotifierProvider(
+    //   create: (context) => FurnitureModel(),
+    //   child: MaterialApp(
+    //     title: 'Furniture Arranger',
+    //     theme: ThemeData(
+    //       primarySwatch: Colors.blue,
+    //     ),
+    //     debugShowCheckedModeBanner: false,
+    //     home: FurnitureArrangerScreen(),
+    //   ),
+    // );
   }
 }

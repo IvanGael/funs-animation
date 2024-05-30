@@ -17,7 +17,7 @@ class _CountdownTimerState extends State<CountdownTimerWithDynamicChanges>
   late Animation<Color?> _colorAnimation;
   late Animation<double> _sizeAnimation;
 
-  int _countdown = 60;
+  int _countdown = 30;
   late Timer _timer;
 
   @override
@@ -28,8 +28,8 @@ class _CountdownTimerState extends State<CountdownTimerWithDynamicChanges>
       duration: Duration(seconds: _countdown),
     );
     _colorAnimation = ColorTween(
-      begin: Colors.blue,
-      end: Colors.red,
+      begin: Colors.deepPurpleAccent,
+      end: Colors.pink,
     ).animate(_controller);
     _sizeAnimation = Tween<double>(
       begin: 100.0,
@@ -65,6 +65,7 @@ class _CountdownTimerState extends State<CountdownTimerWithDynamicChanges>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,

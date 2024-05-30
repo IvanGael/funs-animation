@@ -4,6 +4,24 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+
+class RipplePainter extends CustomPainter {
+  final Animation<double> animation;
+  final Offset tapPosition;
+
+  RipplePainter({required this.animation, required this.tapPosition}) : super(repaint: animation);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()..color = Colors.blue.withOpacity(0.5 * (1 - animation.value));
+
+    canvas.drawCircle(tapPosition, animation.value * size.width * 0.5, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
 class VirtualAquarium extends StatefulWidget {
   const VirtualAquarium({super.key});
 
@@ -11,24 +29,62 @@ class VirtualAquarium extends StatefulWidget {
   _AquariumScreenState createState() => _AquariumScreenState();
 }
 
-class _AquariumScreenState extends State<VirtualAquarium> {
+class _AquariumScreenState extends State<VirtualAquarium> with SingleTickerProviderStateMixin {
   List<Widget> fishWidgets = [];
   List<Widget> decorationWidgets = [];
 
   final TransformationController _controller = TransformationController();
 
-  List<String> aquaBgs  = [
+  List<String> aquaBgs = [
     'assets/aquarium_background.jpg',
     'assets/aquarium_background2.jpg',
     // 'assets/aquarium_background3.jpg'
   ];
   int aquaBgCurrentIndex = 0;
-  
+
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
+  late Offset _tapPosition;
 
   @override
   void initState() {
     super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+
+    _pulseAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _pulseController,
+        curve: Curves.easeOut,
+      ),
+    )..addListener(() {
+      setState(() {});
+    });
+
+    _pulseController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _pulseController.reset();
+      }
+    });
+
+    _tapPosition = const Offset(0, 0);
+
     _initializeAquarium();
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  void _startPloofAnimation(Offset position) {
+    setState(() {
+      _tapPosition = position;
+    });
+    _pulseController.forward();
   }
 
   void _initializeAquarium() {
@@ -51,21 +107,25 @@ class _AquariumScreenState extends State<VirtualAquarium> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(const AssetImage('assets/aquarium_background.jpg'), context);
-    precacheImage(const AssetImage('assets/aquarium_background2.jpg'), context);
+    for (final bg in aquaBgs) {
+      precacheImage(AssetImage(bg), context);
+    }
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: GestureDetector(
+        onTapDown: (details) {
+          _startPloofAnimation(details.globalPosition);
+        },
+        child: Stack(
         children: [
           Positioned.fill(
             child: InteractiveViewer(
               transformationController: _controller,
               constrained: false,
-              child: Image.asset(aquaBgs[aquaBgCurrentIndex], fit: BoxFit.cover),
+              child: Image.asset(aquaBgs[0], fit: BoxFit.cover),
             ),
           ),
           // Positioned.fill(
@@ -76,7 +136,17 @@ class _AquariumScreenState extends State<VirtualAquarium> {
           // ),
           ...decorationWidgets,
           ...fishWidgets,
+          Positioned(
+            bottom: 30,
+            left: 0,
+            right: 0,
+            child: CustomPaint(
+            size: Size.infinite,
+            painter: RipplePainter(animation: _pulseAnimation, tapPosition: _tapPosition),
+          )
+          ),
         ],
+      )
       ),
     );
   }
@@ -87,6 +157,7 @@ class _AquariumScreenState extends State<VirtualAquarium> {
     });
   }
 }
+
 
 class SwimmingFish extends StatefulWidget {
   const SwimmingFish({super.key});
@@ -154,10 +225,10 @@ class _FishWidgetState extends State<FishWidget> {
     "assets/fish2.png",
     "assets/fish3.png",
     "assets/fish4.png",
-    "assets/fish5.png",
-    "assets/fish6.png",
-    "assets/fish7.png",
-    "assets/fish8.png",
+    // "assets/fish5.png",
+    // "assets/fish6.png",
+    // "assets/fish7.png",
+    // "assets/fish8.png",
     "assets/fish9.png",
     "assets/fish10.png"
   ];

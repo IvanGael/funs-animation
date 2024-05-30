@@ -499,7 +499,7 @@ class _PreviewImageGalleryState extends State<PreviewImageGallery> with TickerPr
                       _doubleTapLocalPosition = details.localPosition;
                     },
                     onDoubleTap: _onDoubleTap,
-                    child: Image.network(
+                    child: Image.asset(
                       e,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -656,12 +656,14 @@ class PreviewImageGalleryScreen extends StatefulWidget {
 
 class _MyHomePageState extends State<PreviewImageGalleryScreen> {
   final List<String> imageUrls = [
-    'https://images.unsplash.com/photo-1698357877700-034b990b7f21?q=80&w=2792&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://plus.unsplash.com/premium_photo-1705421624826-8276b4fe4c08?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1705507367127-c90cc471517d?q=80&w=2781&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=2772&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1569084024058-1632922a4e1d?q=80&w=2819&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1602028286725-a4aad1b5d3d9?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    'assets/nature.jpg',
+    'assets/nature2.jpg',
+    'assets/nature3.jpg',
+    'assets/nature4.jpg',
+    'assets/nature5.jpg',
+    'assets/nature6.jpg',
+    'assets/nature7.jpg',
+    'assets/nature8.jpg'
   ];
 
   @override
@@ -698,7 +700,7 @@ class _MyHomePageState extends State<PreviewImageGalleryScreen> {
                     },
                     child: Hero(
                       tag: "img1_${imageUrls.indexOf(e)}",
-                      child: Image.network(
+                      child: Image.asset(
                         e,
                         width: double.infinity,
                         fit: BoxFit.cover,
