@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: PreviewImageGalleryScreen(title: 'Gallery',),
+      home: InteractiveMenu(),
     );
 
     // return ChangeNotifierProvider(
