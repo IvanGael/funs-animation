@@ -9,7 +9,7 @@ class WhiteboardScreen extends StatefulWidget {
 
 class _WhiteboardScreenState extends State<WhiteboardScreen> {
   List<Note> notes = [];
-  int _noteId = 0; // Add a variable to track note IDs
+  int _noteId = 0; 
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,9 @@ class _WhiteboardScreenState extends State<WhiteboardScreen> {
       body: Stack(
         children: [
           Whiteboard(notes: notes),
-          Positioned(
-            bottom: 20,
-            right: 20,
-            child: FloatingActionButton(
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
               onPressed: () {
                 setState(() {
                   notes.add(Note(
@@ -37,9 +36,6 @@ class _WhiteboardScreenState extends State<WhiteboardScreen> {
               },
               child: const Icon(Icons.add),
             ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -82,8 +78,8 @@ class _WhiteboardState extends State<Whiteboard> {
                 setState(() {
                   // Calculate the new position based on the delta values
                   note.offset = Offset(
-                    note.offset.dx + details.offset.dx,
-                    note.offset.dy + details.offset.dy,
+                    details.offset.dx,
+                    details.offset.dy,
                   );
                 });
               },
@@ -109,7 +105,7 @@ class _WhiteboardState extends State<Whiteboard> {
 }
 
 class Note extends StatelessWidget {
-  late final int id; // Add id field to Note
+  late final int id; 
   late Offset offset;
   final Size size;
   final Color color;

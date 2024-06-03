@@ -15,6 +15,7 @@ import 'dragging_with_animation.dart';
 import 'fab_menu_reveal_options.dart';
 import 'fancy_page_transition.dart';
 import 'flip_book_animation.dart';
+import 'flip_clock_countdown.dart';
 import 'furniture_arranger.dart';
 import 'geometric_pattern_animation.dart';
 import 'historical_timeline.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: InteractiveMenu(),
+      home: ImagePanSliderPage(),
     );
 
     // return ChangeNotifierProvider(

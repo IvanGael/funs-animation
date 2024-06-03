@@ -37,7 +37,7 @@ class _HomePageState extends State<SlideInMenuAnimationScreen> {
             left: _isMenuOpen ? 0 : -200, // Adjust this value according to your menu width
             child: Container(
               width: 200, // Width of the menu
-              color: Colors.grey[200],
+              color: Colors.pink[200],
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
