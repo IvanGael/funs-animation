@@ -10,6 +10,7 @@ import 'background_with_animation.dart';
 import 'chat_with_bubble_animation.dart';
 import 'color_cycle_animation.dart';
 import 'countdown_timer_with_dynamic_changes.dart';
+import 'countries_discover_home.dart';
 import 'custom_keyboard.dart';
 import 'dragging_with_animation.dart';
 import 'fab_menu_reveal_options.dart';
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: ImagePanSliderPage(),
+      home: CountriesDiscoverHome(),
     );
 
     // return ChangeNotifierProvider(
