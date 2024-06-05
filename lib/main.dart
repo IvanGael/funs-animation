@@ -5,6 +5,7 @@ import 'animated_photo_organizer.dart';
 import 'animated_progress_bar_with_gradient.dart';
 import 'animated_puzzle_game.dart';
 import 'animated_shopping.dart';
+import 'animated_stopwatch.dart';
 import 'avatar_animation.dart';
 import 'background_with_animation.dart';
 import 'chat_with_bubble_animation.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: CountriesDiscoverHome(),
+      home: AnimatedStopwatch(),
     );
 
     // return ChangeNotifierProvider(
