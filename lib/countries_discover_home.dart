@@ -114,13 +114,22 @@ class _CountriesDiscoverHomeState extends State<CountriesDiscoverHome> {
     fetchCountries();
   }
 
+  String removeAccents(String str) {
+    var withDia = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+    var withoutDia = 'AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz';
+    for (int i = 0; i < withDia.length; i++) {
+      str = str.replaceAll(withDia[i], withoutDia[i]);
+    }
+    return str;
+  }
+
   Future<void> fetchCountries() async {
     try {
       final String response = await rootBundle.loadString('assets/countries.json');
       final List<dynamic> data = json.decode(response);
       List<Country> loadedCountries = data.map((countryData) => Country.fromJson(countryData)).toList();
 
-      loadedCountries.sort((a, b) => a.commonName.compareTo(b.commonName));
+      loadedCountries.sort((a, b) => removeAccents(a.commonName).compareTo(removeAccents(b.commonName)));
 
       setState(() {
         countries = loadedCountries;
@@ -197,7 +206,7 @@ class _CountriesDiscoverHomeState extends State<CountriesDiscoverHome> {
     setState(() {
       filteredCountries = countries
           .where((country) =>
-              country.commonName.toLowerCase().contains(query.toLowerCase()))
+              removeAccents(country.commonName).toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -216,19 +225,14 @@ class _CountriesDiscoverHomeState extends State<CountriesDiscoverHome> {
         toolbarHeight: 75,
         backgroundColor: Colors.indigoAccent,
         bottom: PreferredSize(
-          preferredSize: const Size(200, 30), 
-          child: Container(
-            margin: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              bottom: 6
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.white),
-              borderRadius: BorderRadius.circular(6)
-            ),
-            child: TextField(
+            preferredSize: const Size(200, 30),
+            child: Container(
+              margin: const EdgeInsets.only(left: 16, right: 16, bottom: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(6)),
+              child: TextField(
                 controller: searchController,
                 onChanged: (query) {
                   searchCountries(query);
@@ -236,13 +240,14 @@ class _CountriesDiscoverHomeState extends State<CountriesDiscoverHome> {
                 cursorColor: Colors.white,
                 decoration: const InputDecoration(
                   hintText: "Search country...",
-                  hintStyle: TextStyle(color: Colors.white70, ),
+                  hintStyle: TextStyle(
+                    color: Colors.white70,
+                  ),
                   border: InputBorder.none,
                 ),
                 style: const TextStyle(color: Colors.white),
               ),
-          )
-        ),
+            )),
         actions: [
           DropdownButton<String>(
             value: selectedFilter,
@@ -271,44 +276,47 @@ class _CountriesDiscoverHomeState extends State<CountriesDiscoverHome> {
           ),
         ],
       ),
-      body: filteredCountries.isEmpty ?
-      const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.indigoAccent),)) :
-      ListView.builder(
-        itemCount: filteredCountries.length,
-        itemBuilder: (context, index) {
-          final country = filteredCountries[index];
-          return Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.grey.shade300, width: 1),
-              ),
-            ),
-            child: ListTile(
-              leading: Image.network(
-                country.flagPng,
-                width: 60,
-                height: 60,
-                fit: BoxFit.contain,
-              ),
-              title: Text(
-                country.commonName,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              subtitle: Text(country.officialName),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CountryDetailsScreen(
-                      country: country,
+      body: filteredCountries.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(Colors.indigoAccent),
+            ))
+          : ListView.builder(
+              itemCount: filteredCountries.length,
+              itemBuilder: (context, index) {
+                final country = filteredCountries[index];
+                return Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colors.grey.shade300, width: 1),
                     ),
+                  ),
+                  child: ListTile(
+                    leading: Image.network(
+                      country.flagPng,
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.contain,
+                    ),
+                    title: Text(
+                      country.commonName,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    subtitle: Text(country.officialName),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CountryDetailsScreen(
+                            country: country,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 );
               },
             ),
-          );
-        },
-      ),
     );
   }
 }
@@ -361,9 +369,7 @@ class _FilterModalState extends State<FilterModal> {
           },
           child: const Text(
             'Cancel',
-            style: TextStyle(
-              color: Colors.red
-            ),
+            style: TextStyle(color: Colors.red),
           ),
         ),
         TextButton(
@@ -372,9 +378,7 @@ class _FilterModalState extends State<FilterModal> {
           },
           child: Text(
             'Apply',
-            style: TextStyle(
-              color: Colors.indigoAccent.shade700
-            ),
+            style: TextStyle(color: Colors.indigoAccent.shade700),
           ),
         ),
       ],
@@ -433,13 +437,14 @@ class CountryDetailsScreen extends StatelessWidget {
                 width: 140,
                 height: 140,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(country.flagPng)
-                ),
+                    backgroundImage: NetworkImage(country.flagPng)),
               ),
               // Image.network(country.flagPng, height: 100),
             ),
             const SizedBox(height: 8.0),
-            Text(country.officialName, style: const TextStyle(fontSize: 20)),
+            Center(
+                child: Text(country.officialName,
+                    style: const TextStyle(fontSize: 20))),
             const SizedBox(height: 16.0),
             _buildSectionHeader('Basic Info'),
             _buildInfoRow('Capital',
@@ -484,14 +489,11 @@ class CountryDetailsScreen extends StatelessWidget {
         children: [
           Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(
-            width: 200,
-            child: Text(
-              value,
-              style: const TextStyle(
-                fontSize: 18
-              ),
-            )
-          ),
+              width: 200,
+              child: Text(
+                value,
+                style: const TextStyle(fontSize: 18),
+              )),
         ],
       ),
     );
