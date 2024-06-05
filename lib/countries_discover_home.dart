@@ -317,6 +317,15 @@ class _CountriesDiscoverHomeState extends State<CountriesDiscoverHome> {
                 );
               },
             ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: (){
+
+              },
+              label: Text(
+                "${filteredCountries.length} results"
+              ),
+            ),
     );
   }
 }
