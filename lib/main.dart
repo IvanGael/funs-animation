@@ -9,6 +9,7 @@ import 'animated_stopwatch.dart';
 import 'avatar_animation.dart';
 import 'background_with_animation.dart';
 import 'chat_with_bubble_animation.dart';
+import 'circular_reveal_animation.dart';
 import 'color_cycle_animation.dart';
 import 'countdown_timer_with_dynamic_changes.dart';
 import 'countries_discover_home.dart';
@@ -20,6 +21,7 @@ import 'flip_book_animation.dart';
 import 'flip_clock_countdown.dart';
 import 'furniture_arranger.dart';
 import 'geometric_pattern_animation.dart';
+import 'gradient_background_with_animation.dart';
 import 'historical_timeline.dart';
 import 'image_pan_slider_page.dart';
 import 'image_parallax_animation.dart';
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: AnimatedStopwatch(),
+      home: ImageParallaxAnimation(),
     );
 
     // return ChangeNotifierProvider(

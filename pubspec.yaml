@@ -39,6 +39,7 @@ dependencies:
   provider: ^6.1.2
   carousel_slider: ^4.2.1
   intl: ^0.19.0
+  audioplayers: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,14 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/audios/
+    - assets/audios/CallOfSilence.mp3
+    - assets/audios/MoonlightSonata3rdMvt.mp3
+    - assets/audios/Everytime-We-Touch.mp3
+    - assets/audios/Fantaisie-Impromptu.mp3
+    - assets/audios/Revolutionary-Etude.mp3
+    - assets/audios/Miss-you.mp3
+    - assets/audios/Wonderful-tonight.mp3
     - assets/manga1.jpg
     - assets/manga2.jpg
     - assets/manga3.jpg
