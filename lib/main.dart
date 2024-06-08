@@ -13,7 +13,9 @@ import 'circular_reveal_animation.dart';
 import 'color_cycle_animation.dart';
 import 'countdown_timer_with_dynamic_changes.dart';
 import 'countries_discover_home.dart';
+import 'cube_puzzle_animation.dart';
 import 'custom_keyboard.dart';
+import 'disintegrate_image_animation.dart';
 import 'dragging_with_animation.dart';
 import 'fab_menu_reveal_options.dart';
 import 'fancy_page_transition.dart';
@@ -25,6 +27,7 @@ import 'gradient_background_with_animation.dart';
 import 'historical_timeline.dart';
 import 'image_pan_slider_page.dart';
 import 'image_parallax_animation.dart';
+import 'image_puzzling.dart';
 import 'interactive_menu.dart';
 import 'list_with_animation.dart';
 import 'mind_mapping.dart';
@@ -37,6 +40,7 @@ import 'reoderable_event_list.dart';
 import 'slide_in_menu_animation.dart';
 import 'splash_animation.dart';
 import 'swipe_to_dismiss_card.dart';
+import 'text_puzzle_animation.dart';
 import 'virtual_aquarium.dart';
 import 'whiteboard.dart';
 
@@ -49,15 +53,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData(
-    //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    //     useMaterial3: true,
-    //   ),
-    //   debugShowCheckedModeBanner: false,
-    //   home: ImageParallaxAnimation(),
-    // );
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: ImagePuzzling(),
+    );
 
     // return ChangeNotifierProvider(
     //   create: (context) => PuzzleProvider(),
@@ -71,17 +75,17 @@ class MyApp extends StatelessWidget {
     //   ),
     // );
 
-    return ChangeNotifierProvider(
-      create: (context) => PhotoProvider(),
-      child: MaterialApp(
-        title: 'Photo Organizer',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: PhotoOrganizerScreen(),
-      ),
-    );
+    // return ChangeNotifierProvider(
+    //   create: (context) => PhotoProvider(),
+    //   child: MaterialApp(
+    //     title: 'Photo Organizer',
+    //     theme: ThemeData(
+    //       primarySwatch: Colors.blue,
+    //     ),
+    //     debugShowCheckedModeBanner: false,
+    //     home: PhotoOrganizerScreen(),
+    //   ),
+    // );
 
     // return ChangeNotifierProvider(
     //   create: (context) => CartModel(),
