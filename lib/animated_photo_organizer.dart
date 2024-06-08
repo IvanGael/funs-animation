@@ -13,7 +13,7 @@ class PhotoOrganizerScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Photo Organizer'),
+        title: const Text('Photos'),
       ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -82,6 +82,16 @@ class PhotoProvider with ChangeNotifier {
     'assets/nature6.jpg',
     'assets/nature7.jpg',
     'assets/nature8.jpg',
+    'assets/manga1.jpg',
+    'assets/manga2.jpg',
+    'assets/manga3.jpg',
+    'assets/manga4.jpg',
+    'assets/manga5.jpg',
+    'assets/manga6.png',
+    'assets/manga7.jpg',
+    'assets/manga8.jpg',
+    'assets/manga9.jpg',
+    'assets/manga10.jpg',
   ];
 
   List<String> get photos => _photos;

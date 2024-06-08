@@ -49,15 +49,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: ImageParallaxAnimation(),
-    );
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     useMaterial3: true,
+    //   ),
+    //   debugShowCheckedModeBanner: false,
+    //   home: ImageParallaxAnimation(),
+    // );
 
     // return ChangeNotifierProvider(
     //   create: (context) => PuzzleProvider(),
@@ -71,17 +71,17 @@ class MyApp extends StatelessWidget {
     //   ),
     // );
 
-    // return ChangeNotifierProvider(
-    //   create: (context) => PhotoProvider(),
-    //   child: MaterialApp(
-    //     title: 'Photo Organizer',
-    //     theme: ThemeData(
-    //       primarySwatch: Colors.blue,
-    //     ),
-    //     debugShowCheckedModeBanner: false,
-    //     home: PhotoOrganizerScreen(),
-    //   ),
-    // );
+    return ChangeNotifierProvider(
+      create: (context) => PhotoProvider(),
+      child: MaterialApp(
+        title: 'Photo Organizer',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: PhotoOrganizerScreen(),
+      ),
+    );
 
     // return ChangeNotifierProvider(
     //   create: (context) => CartModel(),
