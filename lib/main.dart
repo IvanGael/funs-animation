@@ -64,6 +64,16 @@ class MyApp extends StatelessWidget {
       home: RSSFeedPage(),
     );
 
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     useMaterial3: true,
+    //   ),
+    //   debugShowCheckedModeBanner: false,
+    //   home: DisintegrateImageAnimation(),
+    // );
+
     // return ChangeNotifierProvider(
     //   create: (context) => PuzzleProvider(),
     //   child: MaterialApp(
