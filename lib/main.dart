@@ -37,6 +37,7 @@ import 'preview_image_gallery.dart';
 import 'pull_to_refresh_animation.dart';
 import 'rating_stars_animation.dart';
 import 'reoderable_event_list.dart';
+import 'rss_feed_reader/rss_feed_page.dart';
 import 'slide_in_menu_animation.dart';
 import 'splash_animation.dart';
 import 'swipe_to_dismiss_card.dart';
@@ -55,12 +56,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: ThemeData.dark(
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: CustomCarouselSliderWithRevealAnimationScreen(),
+      home: RSSFeedPage(),
     );
 
     // return ChangeNotifierProvider(
