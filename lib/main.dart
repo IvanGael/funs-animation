@@ -29,8 +29,10 @@ import 'image_pan_slider_page.dart';
 import 'image_parallax_animation.dart';
 import 'image_puzzling.dart';
 import 'interactive_menu.dart';
+import 'beer_from_animation.dart';
 import 'list_with_animation.dart';
 import 'mind_mapping.dart';
+import 'minesweeper_game/minesweeper_home_game.dart';
 import 'numbers_particle_animation.dart';
 import 'photo_zoom.dart';
 import 'preview_image_gallery.dart';
@@ -54,25 +56,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData.dark(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: RSSFeedPage(),
-    );
-
     // return MaterialApp(
     //   title: 'Flutter Demo',
-    //   theme: ThemeData(
+    //   theme: ThemeData.dark(
     //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
     //     useMaterial3: true,
     //   ),
     //   debugShowCheckedModeBanner: false,
-    //   home: GradientBackgroundWithAnimation(),
+    //   home: RSSFeedPage(),
     // );
+
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: MinesweeperHomeGame(),
+    );
 
     // return ChangeNotifierProvider(
     //   create: (context) => PuzzleProvider(),
