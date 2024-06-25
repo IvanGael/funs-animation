@@ -34,6 +34,7 @@ import 'list_with_animation.dart';
 import 'mind_mapping.dart';
 import 'minesweeper_game/minesweeper_home_game.dart';
 import 'numbers_particle_animation.dart';
+import 'parallax_rain_screen.dart';
 import 'photo_zoom.dart';
 import 'preview_image_gallery.dart';
 import 'pull_to_refresh_animation.dart';
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: ScrollableCardList(),
+      home: RainOnGlassScreen(),
     );
 
     // return ChangeNotifierProvider(

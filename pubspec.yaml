@@ -45,6 +45,7 @@ dependencies:
   xml: ^6.5.0
   animations: ^2.0.11
   lottie: ^3.1.2
+  parallax_rain: ^1.1.1
 
 dev_dependencies:
   flutter_test:
