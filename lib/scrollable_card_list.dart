@@ -16,6 +16,8 @@ class _ScrollableCardListState extends State<ScrollableCardList> {
   bool _isScrolling = false;
   final int _itemsLength = 11;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -35,93 +37,222 @@ class _ScrollableCardListState extends State<ScrollableCardList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: (){
-
-            }, 
-            icon: const Icon(Icons.menu, color: Colors.white,)
-          )
-        ],
-        backgroundColor: Colors.pink.shade700,
-      ),
-      backgroundColor: Colors.grey.shade200,
-      body: Stack(
-        children: [
-          ListView.builder(
-            controller: _scrollController,
-            itemCount: _itemsLength,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return AnimatedBuilder(
-                animation: _scrollController,
-                builder: (context, child) {
-                  if (!_isScrolling || !_scrollController.hasClients) {
-                    return child!;
-                  }
-
-                  double itemPositionOffset = index * 136.0;
-                  double difference = _scrollController.offset - itemPositionOffset;
-                  double percent = 1 - (difference / (136 / 2)).abs();
-                  double scale = 0.8 + (percent * 0.2);
-                  double opacity = 0.25 + (percent * 0.75);
-
-                  scale = scale.clamp(0.8, 1.0);
-                  opacity = opacity.clamp(0.0, 1.0);
-
-                  if (difference.abs() < 136) {
-                    return Opacity(
-                      opacity: opacity,
-                      child: Transform.scale(
-                        scale: scale,
-                        child: child,
-                      ),
-                    );
-                  } else {
-                    return child!;
-                  }
+    return Builder(
+      builder: (BuildContext context) {
+      return Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  _scaffoldKey.currentState?.openDrawer();
                 },
-                child: Card(
-                  margin: const EdgeInsets.all(8),
-                  color: Colors.indigoAccent,
-                  elevation: 14,
-                  shadowColor: Colors.indigo,
-                  child: Container(
-                    height: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14)
-                    ),
-                    child: Center(
-                      child: Text(
-                        '$index',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ))
+          ],
+          backgroundColor: Colors.pink.shade700,
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.pink.shade700,
+                ),
+                child: const Text(
+                  'Drawer Header',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: const Text('Item 1'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Item 2'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.grey.shade200,
+        body: Stack(
+          children: [
+            ListView.builder(
+              controller: _scrollController,
+              itemCount: _itemsLength,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return AnimatedBuilder(
+                  animation: _scrollController,
+                  builder: (context, child) {
+                    if (!_isScrolling || !_scrollController.hasClients) {
+                      return child!;
+                    }
+
+                    double itemPositionOffset = index * 136.0;
+                    double difference = _scrollController.offset - itemPositionOffset;
+                    double percent = 1 - (difference / (136 / 2)).abs();
+                    double scale = 0.8 + (percent * 0.2);
+                    double opacity = 0.25 + (percent * 0.75);
+
+                    scale = scale.clamp(0.8, 1.0);
+                    opacity = opacity.clamp(0.0, 1.0);
+
+                    if (difference.abs() < 136) {
+                      return Opacity(
+                        opacity: opacity,
+                        child: Transform.scale(
+                          scale: scale,
+                          child: child,
+                        ),
+                      );
+                    } else {
+                      return child!;
+                    }
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.all(8),
+                    color: Colors.indigoAccent,
+                    elevation: 14,
+                    shadowColor: Colors.indigo,
+                    child: Container(
+                      height: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(14)),
+                      child: Center(
+                        child: Text(
+                          '$index',
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
                   ),
+                );
+              },
+            ),
+            Positioned(
+              right: 16,
+              top: 0,
+              bottom: 0,
+              child: Center(
+                child: CustomScrollIndicator(
+                  scrollPercentage: _scrollPercentage,
+                  itemCount: _itemsLength,
                 ),
-              );
-            },
-          ),
-          Positioned(
-            right: 16,
-            top: 0,
-            bottom: 0,
-            child: Center(
-              child: CustomScrollIndicator(
-                scrollPercentage: _scrollPercentage,
-                itemCount: _itemsLength,
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     actions: [
+    //       IconButton(
+    //         onPressed: (){
+
+    //         },
+    //         icon: const Icon(Icons.menu, color: Colors.white,)
+    //       )
+    //     ],
+    //     backgroundColor: Colors.pink.shade700,
+    //   ),
+    //   backgroundColor: Colors.grey.shade200,
+    //   body: Stack(
+    //     children: [
+    //       ListView.builder(
+    //         controller: _scrollController,
+    //         itemCount: _itemsLength,
+    //         physics: const BouncingScrollPhysics(),
+    //         itemBuilder: (context, index) {
+    //           return AnimatedBuilder(
+    //             animation: _scrollController,
+    //             builder: (context, child) {
+    //               if (!_isScrolling || !_scrollController.hasClients) {
+    //                 return child!;
+    //               }
+
+    //               double itemPositionOffset = index * 136.0;
+    //               double difference = _scrollController.offset - itemPositionOffset;
+    //               double percent = 1 - (difference / (136 / 2)).abs();
+    //               double scale = 0.8 + (percent * 0.2);
+    //               double opacity = 0.25 + (percent * 0.75);
+
+    //               scale = scale.clamp(0.8, 1.0);
+    //               opacity = opacity.clamp(0.0, 1.0);
+
+    //               if (difference.abs() < 136) {
+    //                 return Opacity(
+    //                   opacity: opacity,
+    //                   child: Transform.scale(
+    //                     scale: scale,
+    //                     child: child,
+    //                   ),
+    //                 );
+    //               } else {
+    //                 return child!;
+    //               }
+    //             },
+    //             child: Card(
+    //               margin: const EdgeInsets.all(8),
+    //               color: Colors.indigoAccent,
+    //               elevation: 14,
+    //               shadowColor: Colors.indigo,
+    //               child: Container(
+    //                 height: 120,
+    //                 decoration: BoxDecoration(
+    //                   borderRadius: BorderRadius.circular(14)
+    //                 ),
+    //                 child: Center(
+    //                   child: Text(
+    //                     '$index',
+    //                     style: const TextStyle(
+    //                       color: Colors.white,
+    //                       fontSize: 16,
+    //                       fontWeight: FontWeight.bold
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ),
+    //             ),
+    //           );
+    //         },
+    //       ),
+    //       Positioned(
+    //         right: 16,
+    //         top: 0,
+    //         bottom: 0,
+    //         child: Center(
+    //           child: CustomScrollIndicator(
+    //             scrollPercentage: _scrollPercentage,
+    //             itemCount: _itemsLength,
+    //           ),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   @override
