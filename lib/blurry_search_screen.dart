@@ -23,7 +23,7 @@ class _BlurrySearchScreenState extends State<BlurrySearchScreen> {
   bool _isExpanded = false;
   String? _selectedCategory;
 
-  final List<String> categories = ['Nature', 'City', 'Animals', 'Food', 'Technology'];
+  final List<String> categories = ['Nature', 'City', 'Nostalgic', 'Interaction', 'Technology'];
   late List<ImageItem> images;
 
   @override
@@ -34,7 +34,7 @@ class _BlurrySearchScreenState extends State<BlurrySearchScreen> {
   }
 
   void _generateImages() {
-    images = List.generate(30, (index) {
+    images = List.generate(35, (index) {
       return ImageItem(
         url: 'https://picsum.photos/200/200?random=$index',
         category: categories[index % categories.length],
