@@ -1,3 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
+import 'dart:io';
+
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +13,7 @@ import 'animated_shopping.dart';
 import 'animated_stopwatch.dart';
 import 'avatar_animation.dart';
 import 'background_with_animation.dart';
+import 'blurry_search_screen.dart';
 import 'chat_with_bubble_animation.dart';
 import 'circular_reveal_animation.dart';
 import 'color_cycle_animation.dart';
@@ -50,7 +56,11 @@ import 'virtual_aquarium.dart';
 import 'whiteboard.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      DevicePreview(
+        builder: (context) => const MyApp()
+      )
+    );
 }
 
 class MyApp extends StatelessWidget {
@@ -69,14 +79,18 @@ class MyApp extends StatelessWidget {
     // );
 
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: ScrollableCardList(),
-    );
+        title: 'Progressive blur effect',
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: BlurrySearchScreen(),
+      );
+
+    
 
     // return ChangeNotifierProvider(
     //   create: (context) => PuzzleProvider(),

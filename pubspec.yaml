@@ -46,6 +46,8 @@ dependencies:
   animations: ^2.0.11
   lottie: ^3.1.2
   parallax_rain: ^1.1.1
+  device_preview: ^1.2.0
+  flutter_gradient_animation_text: ^1.0.2
 
 dev_dependencies:
   flutter_test:
