@@ -95,7 +95,7 @@ class _BlurrySearchScreenState extends State<BlurrySearchScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                height: _isExpanded ? 200 : 80,
+                height: _isExpanded ? 200 : 120,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: AppBar(
