@@ -97744,14 +97744,14 @@ A.abw.prototype={
 h2(){return null.$0()}}
 A.ti.prototype={}
 A.xa.prototype={
-aL(){return new A.Dl(A.RE(null,null),A.a(["Nature","City","Animals","Food","Technology"],t.s),B.m)}}
+aL(){return new A.Dl(A.RE(null,null),A.a(["Nature","City","Nostalgic","Interaction","Technology"],t.s),B.m)}}
 A.Dl.prototype={
 b6(){var s=this
 s.bm()
 s.d.ab(0,s.gadr())
 s.a87()},
-a87(){var s,r,q=J.adb(30,t.df)
-for(s=this.w,r=0;r<30;++r)q[r]=new A.ti("https://picsum.photos/200/200?random="+r,s[B.k.da(r,5)])
+a87(){var s,r,q=J.adb(35,t.df)
+for(s=this.w,r=0;r<35;++r)q[r]=new A.ti("https://picsum.photos/200/200?random="+r,s[B.k.da(r,5)])
 this.x=q},
 ads(){this.aw(new A.anN(this))},
 Oc(a){this.aw(new A.anM(this,a))},
